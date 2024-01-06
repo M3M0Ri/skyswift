@@ -1,0 +1,25 @@
+{% load static %}
+<nav>
+    <a href="{% url 'flight:feed' %}"><img src="{% static 'images/logo1.png' %}" class="logo"></a>
+    <ul>
+        <li><a href="{% url 'flight:feed' %}">Home</a></li>
+        <li><a href="{% url 'flight:all_flights' %}">All flights</a></li>
+        <li><a href="{% url 'flight:search_flight_by_date' %}">search flight by Date</a></li>
+        <li><a href="{% url 'flight:search_flight' %}">search flight by Airport</a></li>
+        <li><a href="http://localhost:8000/ticket/all">My Tickets</a></li>
+        <li><a href="http://localhost:8000/ticket/record">My Billing</a></li>
+        <li><a href="{% url 'flight:create_flight' %}">Create Flight</a></li>
+        <li><a href="{% url 'flight:create_airport' %}">Create Airway</a></li>
+        <li><a href="{% url 'user:charging_account' %}">Charging Account</a></li>
+
+        {% if user.is_authenticated %}
+            <li><a href="http://localhost:8000/user/logout">Log Out</a></li>
+        {% else %}
+            <li><a href="http://localhost:8000/user/login">Log In</a></li>
+        {% endif %}
+    </ul>
+
+</nav>
+
+
+<hr>

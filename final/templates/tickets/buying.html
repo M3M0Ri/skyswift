@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buying Ticket</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 90%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+
+        .flight {
+            margin-bottom: 20px;
+        }
+
+        .flight p {
+            margin-bottom: 5px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"] {
+            width: calc(100% - 22px); /* Adjust input width */
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .credit-card-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .credit-card-form {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        .alert-danger {
+            background-color: #dc3545;
+            color: #fff;
+            padding: 10px;
+            border: 1px solid #dc3545;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Buying Ticket</h1>
+    <div class="flight">
+        <p class="user__info"></p>
+        <p class="flight__origin">Origin: {{ flight.origin }}</p>
+        <p class="flight__destination">Destination: {{ flight.destination }}</p>
+        <p class="flight__departure">Departure: {{ flight.departure }}</p>
+        <p class="flight__arrival">Arrival: {{ flight.arrival }}</p>
+        <p>Price: {{ flight.price }}</p>
+    </div>
+</div>
+
+<div class="credit-card-container">
+    <div class="credit-card-form">
+        <h2>Credit Card Information</h2>
+        {% if form_errors %}
+            <ul>
+                <li>{{ form_errors |escape }}</li>
+            </ul>
+        {% endif %}
+        <form id="creditCardForm" action="http://127.0.0.1:8000/ticket/buy/{{ flight.id }}/" method="post">
+            {% csrf_token %}
+            <label for="credit_card_number">Card Number:</label>
+            <input type="text" id="credit_card_number" name="credit_card_number" required><br>
+            <label for="credit_card_holder_name">Cardholder Name:</label>
+            <input type="text" id="credit_card_holder_name" name="credit_card_holder_name" required><br>
+            <label for="expiration_year">Expiry Year:</label>
+            <input type="text" id="expiration_year" name="expiration_year" required><br>
+            <label for="expiration_month">Expiry Month:</label>
+            <input type="text" id="expiration_month" name="expiration_month" required><br>
+            <label for="cvv">CVV:</label>
+            <input type="text" id="cvv" name="cvv" required><br>
+            {% for error in form.errors %}
+                <div class="alert alert-danger">
+                    {{ error }}
+                </div>
+            {% endfor %}
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</div>
+</body>
+</html>

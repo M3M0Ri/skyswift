@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Airport</title>
+</head>
+<body>
+<h1>Create a New Airport</h1>
+
+<form method="POST">
+    {% csrf_token %}
+
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="country">Country:</label>
+    <input type="text" id="country" name="country" required>
+    <label for="city">City:</label>
+    <input type="text" id="city" name="city" required>
+
+    <input type="submit" value="Create Airport">
+</form>
+</body>
+</html>

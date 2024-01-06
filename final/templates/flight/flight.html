@@ -1,0 +1,124 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Flight Information</title>
+    <style>
+        body {
+            font-family: sans-serif;
+        }
+
+        .flight-information {
+            margin: 20px;
+            border: 1px solid #ccc;
+            padding: 20px;
+        }
+
+        .flight-information h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table thead th {
+            background-color: #eee;
+            font-weight: bold;
+            padding: 8px 12px;
+            text-align: left;
+        }
+
+        table tbody td {
+            padding: 8px 12px;
+            text-align: left;
+        }
+
+        .attribute-cell, .value-cell {
+            text-align: left;
+            padding-right: 20px; /* Adjust the padding as needed */
+        }
+
+        .attribute-cell {
+            width: 150px;
+        }
+
+        .back-to-list-link {
+            text-decoration: none;
+            color: #007bff;
+            padding: 5px 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .back-to-list-link:hover {
+            background-color: #eee;
+        }
+        .go-to-buy-link {
+            text-decoration: none;
+            color: #007bff;
+            padding: 5px 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .go-to-buy-link:hover {
+            background-color: #eee;
+        }
+
+    </style>
+</head>
+<body>
+<div class="flight-information">
+    <h1>Flight Information</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>Attribute</th>
+            <th>Value</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td class="attribute-cell">Origin</td>
+            <td class="value-cell">{{ flight.origin }}</td>
+        </tr>
+        <tr>
+            <td class="attribute-cell">Destination</td>
+            <td class="value-cell">{{ flight.destination }}</td>
+        </tr>
+        <tr>
+            <td class="attribute-cell">Departure</td>
+            <td class="value-cell">{{ flight.departure|date:"F j, Y, g:i A" }}</td>
+        </tr>
+        <tr>
+            <td class="attribute-cell">Arrival</td>
+            <td class="value-cell">{{ flight.arrival|date:"F j, Y, g:i A" }}</td>
+        </tr>
+        <tr>
+            <td class="attribute-cell">Price</td>
+            <td class="value-cell">{{ flight.price }} €</td>
+        </tr>
+        <tr>
+            <td class="attribute-cell">Cost of Cancel</td>
+            <td class="value-cell">{{ flight.cost_of_cancel }} €</td>
+        </tr>
+        <tr>
+            <td class="attribute-cell">Airplane</td>
+            <td class="value-cell">{{ flight.airplane }}</td>
+        </tr>
+        <tr>
+            <td class="attribute-cell">Available seats</td>
+            <td class="value-cell">{{ available_seats }}</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <a class="back-to-list-link" href="{% url 'all_flights' %}">Back to Flight List</a>
+    <a class="go-to-buy-link" href="{% url 'buying_ticket' fpk=flight.id %}">Buy this Flight?</a>
+</div>
+</body>
+</html>

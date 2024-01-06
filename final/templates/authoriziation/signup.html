@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            text-align: center;
+        }
+
+        .container {
+            width: 50%;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+        }
+
+        .form-group {
+            margin-bottom: 10px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            padding: 5px 10px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Sign Up</h1>
+    <form action="" method="post" href="http://localhost:8000/user/signup">
+        {% csrf_token %}
+        {{ message }}
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+
+        <div class="form-group">
+            <label for="password-confirm">Password Confirm:</label>
+            <input type="password" id="password-confirm" name="password-confirm" required>
+        </div>
+
+        <div class="form-group">
+            <label for="fullname">Full Name:</label>
+            <input type="text" id="fullname" name="fullname" required>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="text" id="email" name="email" required>
+        </div>
+
+        <div class="form-group">
+            <label for="role">Role:</label>
+            <select id="role" name="role">
+                <option value="agency">Agency</option>
+                <option value="normal">Normal</option>
+            </select>
+        </div>
+
+        <button type="submit">Sign Up</button>
+    </form>
+</div>
+<button type="submit"><a href="http://localhost:8000/user/login/">Login</a></button>
+</body>
+</html>

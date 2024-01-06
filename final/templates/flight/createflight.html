@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Form</title>
+</head>
+<body>
+<h1>Flight Form</h1>
+
+<form method="post" id="flight-form">
+    {% csrf_token %}
+    <p>{{ errors }}</p>
+    <label for="origin">Origin:</label>
+    <select id="origin" name="origin">
+        {% for airport in airports %}
+            <option value="{{ airport.pk }}">{{ airport }}</option>
+        {% endfor %}
+    </select><br>
+
+    <label for="destination">Destination:</label>
+    <select id="destination" name="destination">
+        {% for airport in airports %}
+            <option value="{{ airport.pk }}">{{ airport }}</option>
+        {% endfor %}
+    </select><br>
+
+    <label for="departure">Departure Date and Time:</label>
+    <input type="datetime-local" id="departure" name="departure" required><br>
+
+    <label for="arrival">Arrival Date and Time:</label>
+    <input type="datetime-local" id="arrival" name="arrival" required><br>
+
+    <label for="price">Price:</label>
+    <input type="number" id="price" name="price" min="0" required><br>
+
+    <label for="cost_of_cancel">Cost of Cancellation:</label>
+    <input type="number" id="cost_of_cancel" name="cost_of_cancel" min="0" value="0"><br>
+
+    <label for="airplane">airplane:</label><br>
+    <select id="airplane" name="airplane">
+        {% for plane in airplanes %}
+            <option value="{{ plane.pk }}">{{ plane }}</option>
+        {% endfor %}
+    </select><br>
+    <button type="submit">Submit</button>
+</form>
+</body>
+<script>
+    {#const form = document.getElementById('flight-form');#}
+    {##}
+    {#form.addEventListener('submit', (event) => {#}
+    {#    event.preventDefault();#}
+    {##}
+    {#    const origin = document.getElementById('origin').value;#}
+    {#    const destination = document.getElementById('destination').value;#}
+    {#    const departure = document.getElementById('departure').value;#}
+    {#    const arrival = document.getElementById('arrival').value;#}
+    {#    const price = String(document.getElementById('price').value);#}
+    {#    const costOfCancel = String(document.getElementById('cost-of-cancel').value);#}
+    {#    const capacity = String(document.getElementById('capacity').value);#}
+    {##}
+    {#    const formData = new FormData();#}
+    {#    formData.append('origin', origin);#}
+    {#    formData.append('destination', destination);#}
+    {#    formData.append('departure', departure);#}
+    {#    formData.append('arrival', arrival);#}
+    {#    formData.append('price', price);#}
+    {#    formData.append('cost_of_cancel', costOfCancel);#}
+    {#    formData.append('capacity', capacity);#}
+    {##}
+    {#    const xhr = new XMLHttpRequest();#}
+    {#    xhr.open('POST', '/');#}
+    {#    xhr.onload = () => {#}
+    {#        if (xhr.status === 201) {#}
+    {#            alert('Flight created successfully!');#}
+    {#        } else {#}
+    {#            alert('Error creating flight: ' + xhr.statusText);#}
+    {#        }#}
+    {#    };#}
+    {#    xhr.send(formData);#}
+    ///{#});#}
+
+</script>
+</html>
